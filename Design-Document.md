@@ -10,7 +10,7 @@ Note: this app is a practice project. It might not work correctly (or run at all
 
 ## Context
 
-To maintain maximum battery life, it's best to keep it charged between 40%-60%. Never keep it completely full or empty. This introduces stresses to the battery and makes it degrade faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
+To maintain maximum battery life, it's best to keep it charged between 40%-60%. Never keep it completely full or empty. This stresses the battery and makes it degrade faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
 
 Most laptops with Windows preinstalled have some kind of firmware utility that can either stop charging when the battery reaches 80%, or limit the charging range to extend the battery's life. For most laptops, this utility stops working if you shutdown the computer or dual boot into Linux (i.e., stop running Windows).
 
@@ -62,6 +62,27 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
 1. Battery runs down to 40%. On this event, the app calls system notification stack to display a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
 1. User connects the laptop to AC charger and continues to use the laptop. The battery reaches 60%.
 1. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
+
+#### Psudo code
+
+```
+# On start: read battery & AC adapter status
+bat_pct = open('/sys/class/power_supply/CMB0/capacity', 'r').readline()
+ac_stat = open('/sys/class/power_supply/ADP1/online', 'r').readline()
+
+# Run continuously (not sure if proper to use a while loop)
+while True:
+    # Check whether charging
+    if ac_stat:
+        # Check battery percentage
+        if bat_pct >= 60%:
+            notify("Stop charging!")
+    else:
+        # Check battery percentage
+        if bat_pct <= 40%:
+            notify("Start charging!")
+    sleep(60)
+```
 
 ## Testing, monitoring, and alerting app status
 TBA
