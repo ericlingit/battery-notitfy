@@ -38,7 +38,7 @@ Source of battery stats:
 
 `/sys/class/power_supply/CMB0/capacity`
 
-`capacity` contains a value (0 - 100) that represents the current battery capacity percentage.
+`capacity` contains a value (0 - 100) that represents the current battery capacity percentage. On other systems, the battery stats may be listed under a `BAT0` directory.
 
 Source of AC adapter state:
 
