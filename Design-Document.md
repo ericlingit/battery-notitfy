@@ -25,10 +25,10 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 - Work with other laptop brands/models.
 
 ## Milestones
-1. Poll and print the battery status on-demand.
-1. Access system notification to display a pop up on-demand.
-1. Run as a service.
-1. Display a system notification to start/stop charging the battery.
+- [x] Poll and print the battery status on-demand.
+- [ ] Access system notification to display a pop up on-demand.
+- [ ] Run as a service.
+- [ ] Display a system notification to start/stop charging the battery.
 
 ## Technical Architecture (WIP)
 
