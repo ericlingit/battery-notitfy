@@ -18,9 +18,11 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 
 #### Will do
 - Remind the user to plug in or unplug the laptop charger when the battery reaches predefined minimum or maximum threshold.
+- Work with my model of LG Gram laptop.
 
 #### Won't do
 - Automatically start/stop charging when the thresholds are reached. This is probably firmware-level stuff. My code-fu isn't remotely there yet.
+- Work with other laptop brands/models.
 
 ## Milestones
 1. Poll and print the battery status on-demand.
