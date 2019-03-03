@@ -28,17 +28,44 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 1. Run as a service.
 1. Display a system notification to start/stop charging the battery.
 
-## Technical architecture
-1. User disconnects the computer from charger and turns it on.
+## Technical Architecture (WIP)
+
+- Target operating system: Ubuntu 18.04 x64
+- Target hardware: 2018 LG Gram
+- Programming language: python 3.7
+
+Source of battery stats:
+
+`/sys/class/power_supply/CMB0/capacity`
+
+`capacity` contains a value (0 - 100) that represents the current battery capacity percentage.
+
+Source of AC adapter state:
+
+`/sys/class/power_supply/ADP1/online`
+
+`online` contains a value (0 - 2) that represents the state of power supply (VBUS):
+
+- 0: Unplugged
+- 1: Plugged in: Fixed Voltage Supply
+- 2: Plugged in: Programmable Voltage Supply
+
+Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-power
+
+#### Usage Scenario
+
+1. User disconnects the laptop from charger and powers it on.
 1. User logs into Ubuntu.
-1. User launches this app. It continues to run in the background.
-1. User uses the computer for an extended period of time, draining the battery. Battery status reaches 40%. On this event, the app calls system notification stack and displays a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
-1. User continue to use the laptop and let it charge. The battery reaches 60%.
-1. On this event, the app calls system notification stack and displays a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
+1. User launches Battery Notify. It continues to run in the background to check following stats:
+    - whether the laptop is plugged in
+    - the current battery capacity reading.
+1. Battery runs down to 40%. On this event, the app calls system notification stack to display a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
+1. User connects the laptop to AC charger and continues to use the laptop. The battery reaches 60%.
+1. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
 
 ## Testing, monitoring, and alerting app status
 TBA
 
 ## Open questions
 - How will this work on different operating systems?
-
+- What if the laptop is indeed charging, but the battery somehow continues to drain?
