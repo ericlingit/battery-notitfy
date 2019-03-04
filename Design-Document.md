@@ -63,6 +63,8 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
     - whether the laptop is plugged in
     - the current battery capacity reading.
 1. Battery runs down to 40%. On this event, the app calls system notification stack to display a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
+    - The easiest way to [display a notification popup](https://askubuntu.com/a/616996) is to utilize ubuntu's [`notify-send`](https://manpages.ubuntu.com/manpages/xenial/man1/notify-send.1.html) command. Try running this in a terminal: `notify-send abcxyz`. To call it from a python app, import the `subprocess` module.
+    - Another way is to `pip install python3-notify2` and use that. [Docs](https://pypi.org/project/notify2/).
 1. User connects the laptop to AC charger and continues to use the laptop. The battery reaches 60%.
 1. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
 
