@@ -59,14 +59,13 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
 
 1. User disconnects the laptop from charger and powers it on.
 1. User logs into Ubuntu.
-1. User launches Battery Notify. It continues to run in the background to check following stats:
+1. System launches Battery Notify in the background. It checks the following stats continuously every 5 minutes:
     - whether the laptop is plugged in
-    - the current battery capacity reading.
+    - the current battery capacity reading
 1. Battery runs down to 40%. On this event, the app calls system notification stack to display a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
     - The easiest way to [display a notification popup](https://askubuntu.com/a/616996) is to utilize ubuntu's [`notify-send`](https://manpages.ubuntu.com/manpages/xenial/man1/notify-send.1.html) command. Try running this in a terminal: `notify-send abcxyz`. To call it from a python app, import the `subprocess` module.
     - Another way is to `pip install python3-notify2` and use that. [Docs](https://pypi.org/project/notify2/).
-1. User connects the laptop to AC charger and continues to use the laptop. The battery reaches 60%.
-1. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
+1. User connects the laptop to a charger to charge the laptop while using it. The battery reaches 60%. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
 
 #### Psudo code
 
@@ -81,12 +80,12 @@ while True:
     if ac_stat:
         # Check battery percentage
         if bat_pct >= 60%:
-            notify("Stop charging!")
+            notify("Battery at 60%. Stop charging.")
     else:
         # Check battery percentage
         if bat_pct <= 40%:
-            notify("Start charging!")
-    sleep(60)
+            notify("Battery at 40%. Start charging.")
+    sleep(300)
 ```
 
 ## Testing, monitoring, and alerting app status
