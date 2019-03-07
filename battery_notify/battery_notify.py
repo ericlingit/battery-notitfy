@@ -1,11 +1,17 @@
-# Read battery & AC adapter status
-with open('/sys/class/power_supply/CMB0/capacity', 'r') as b:
-    bat_pct = int(b.readline())
-with open('/sys/class/power_supply/ADP1/online', 'r') as a:
-    ac_stat = bool(int(a.readline()))
+import sys
+import subprocess
 
-print(f'Capacity: {bat_pct}')
-print(f'Plugged in: {ac_stat}')
+try:
+    # Read charger & battery status
+    with open('/sys/class/power_supply/ADP1/online', 'r') as a:
+        ac_stat = bool(int(a.readline()))
+        print(f'Plugged in: {ac_stat}')
+    with open('/sys/class/power_supply/CMB0/capacity', 'r') as b:
+        bat_pct = int(b.readline())
+        print(f'Capacity: {bat_pct}')
+except IOError:
+    # Exit on error
+    sys.exit()
 
 # Determine when to notify start/stop charging.
 # Check whether charging:
@@ -21,6 +27,5 @@ else:
         print("Battery below 40%, start charging!")
 
 ### Use notify-send to display a notification pop up.
-import subprocess
 subprocess.run(['notify-send', 'hello world'])
 
