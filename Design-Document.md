@@ -1,6 +1,6 @@
 # Battery Notify Design Document
 
-Last updated: 2019-03-03
+Last updated: 2019-03-07
 
 ## Overview
 
