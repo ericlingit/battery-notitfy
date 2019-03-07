@@ -23,13 +23,11 @@ if charging:
     print('Battery is charging.')
     # Check battery percentage
     if bat_pct >= 60:
-        print("Battery above 60%, stop charging!")
+        # Show notification pop up
+        run(['notify-send', 'Battery above 60%, stop charging!'])
 else:
     print('Battery is discharging.')
     # Check battery percentage
     if bat_pct <= 40:
-        print("Battery below 40%, start charging!")
-
-### Use notify-send to display a notification pop up.
-run(['notify-send', 'hello world'])
-
+        # Show notification pop up
+        run(['notify-send', 'Battery below 40%, start charging!'])
