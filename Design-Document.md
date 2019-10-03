@@ -4,7 +4,7 @@ Last updated: 2019-03-07
 
 ## Overview
 
-This app reminds you to charge the battery when it runs down to 40%. The app will notifie you to stop charging when the battery has reached 60%.
+This app reminds you to charge the battery when it runs down to 40%. The app will notify you to stop charging when the battery has reached 60%.
 
 Note: this app is a practice project. It might not work correctly (or run at all). This design document itself is also a practice piece.
 
@@ -41,13 +41,13 @@ Source of battery stats:
 
 `/sys/class/power_supply/CMB0/capacity`
 
-`capacity` contains a value (0 - 100) that represents the current battery capacity percentage. On other systems, the battery stats may be listed under a `BAT0` directory.
+`capacity` is a text file that contains a value (0 - 100). It represents the current battery charge level. On other systems, the battery stats may be listed under a `BAT0` directory.
 
 Source of AC adapter state:
 
 `/sys/class/power_supply/ADP1/online`
 
-`online` contains a value (0 - 2) that represents the state of power supply (VBUS):
+`online` is a text file that contains a value (0 - 2). It represents the state of power supply (VBUS):
 
 - 0: Unplugged
 - 1: Plugged in: Fixed Voltage Supply
@@ -90,7 +90,3 @@ while True:
 
 ## Testing, monitoring, and alerting app status
 TBA
-
-## Open questions
-- How will this work on different operating systems?
-- What if the laptop is indeed charging, but the battery somehow continues to drain?
