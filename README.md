@@ -4,9 +4,7 @@ Last updated: 2019-10-03
 
 ## Overview
 
-This app reminds you to charge the battery when it runs down to 40%. The app will notify you to stop charging when the battery has reached 60%.
-
-Note: this app is a practice project. It might not work correctly (or run at all). This design document itself is also a practice piece.
+This script displays a notification to remind you to plug or unplug the charger when the battery level goes below 40% or above 60%.
 
 ## Context
 
@@ -32,7 +30,6 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 - [ ] Autostart on login.
 
 ## Technical Architecture (WIP)
-
 - Target operating system: Ubuntu 18.04 x64
 - Target hardware: 2018 LG Gram
 - Programming language: python 3.7
@@ -65,7 +62,7 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
 1. Battery runs down to 40%. On this event, the app calls system notification stack to display a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
     - The easiest way to [display a notification popup](https://askubuntu.com/a/616996) is to utilize ubuntu's [`notify-send`](https://manpages.ubuntu.com/manpages/xenial/man1/notify-send.1.html) command. Try running this in a terminal: `notify-send abcxyz`. To call it from a python app, import the `subprocess` module.
     - Another way is to `pip install python3-notify2` and use that. [Docs](https://pypi.org/project/notify2/).
-1. User connects the laptop to a charger to charge the laptop while using it. The battery reaches 60%. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the laptop."
+1. User connects the laptop to a charger to charge the laptop while using it. The battery reaches 60%. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the charger."
 
 #### Psudo code
 
