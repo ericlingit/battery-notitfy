@@ -27,7 +27,7 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 - [x] Determine when to notify start/stop charging.
 - [x] Display a system notification.
 - [x] Run continuously
-- [ ] Autostart (`systemd`)
+- [x] Autostart (`systemd`)
 
 ## Technical Architecture (WIP)
 - Target operating system: Ubuntu 18.04 x64
