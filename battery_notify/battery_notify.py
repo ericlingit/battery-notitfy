@@ -9,6 +9,9 @@ MAX = 80
 MIN = 50
 
 log = logging.getLogger()
+hdl = logging.StreamHandler()
+log.addHandler(hdl)
+log.setLevel(logging.INFO)
 
 
 def read_stats() -> dict:
