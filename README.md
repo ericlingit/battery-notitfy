@@ -2,13 +2,13 @@
 
 ## Overview
 
-This script displays a notification to remind you to plug or unplug the charger when the battery level goes below 40% or above 60%.
+This script displays a notification to remind you to plug or unplug the charger when the battery level goes below 50% or above 60%.
 
 ## Context
 
-To maintain maximum battery life, it's best to keep it charged between 40%-60%. Never keep it completely full or empty. This stresses the battery and makes it degrade faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
+To maintain maximum battery life, it's best to keep it charged between 50%-80%. Keep it completely full (or empty) stresses the battery, and makes it degrade faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
 
-Most laptops with Windows preinstalled have some kind of firmware utility that can either stop charging when the battery reaches 80%, or limit the charging range to extend the battery's life. For most laptops, this utility stops working if you dual boot into Linux (i.e., stop running Windows).
+Most laptops with Windows preinstalled have some kind of firmware utility that can either stop charging when the battery reaches 80%, or limit the charging range to extend the battery's life. This utility stops working if you dual boot into Linux.
 
 ## Goals and non-goals
 
