@@ -6,9 +6,9 @@ This script displays a notification to remind you to plug or unplug the charger 
 
 ## Context
 
-To maintain maximum battery life, it's best to keep it charged between 50%-80%. Keep it completely full (or empty) stresses the battery, and makes it degrade faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
+To prolong battery life, it's best to keep it charged between 50%-80%. Keeping it completely full (or empty) stresses the battery, and degrades it faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
 
-Most laptops with Windows preinstalled have some kind of firmware utility that can either stop charging when the battery reaches 80%, or limit the charging range to extend the battery's life. This utility stops working if you dual boot into Linux.
+Most laptops with Windows preinstalled have an utility that can stop charging when the battery reaches 80% to extend the battery's life. This utility stops working if you dual boot into Linux.
 
 ## Goals and non-goals
 
@@ -49,19 +49,6 @@ Source of AC adapter state:
 - 2: Plugged in: Programmable Voltage Supply
 
 Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-power
-
-#### Usage Scenario
-
-1. User disconnects the laptop from charger and powers it on.
-1. User logs into Ubuntu.
-1. System launches Battery Notify in the background. It checks the following stats continuously every 5 minutes:
-    - whether the laptop is plugged in
-    - the current battery capacity reading
-1. Battery runs down to 40%. On this event, the app calls system notification stack to display a reminder to start charging the laptop. e.g., "Battery at 40%, plug in the charger."
-    - The easiest way to [display a notification popup](https://askubuntu.com/a/616996) is to utilize ubuntu's [`notify-send`](https://manpages.ubuntu.com/manpages/xenial/man1/notify-send.1.html) command. Try running this in a terminal: `notify-send abcxyz`. To call it from a python app, import the `subprocess` module.
-    - Another way is to `pip install python3-notify2` and use that. [Docs](https://pypi.org/project/notify2/).
-1. User connects the laptop to a charger to charge the laptop while using it. The battery reaches 60%. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the charger."
-
 
 ## Installation
 1. `chmod +x battery-notify.sh`
