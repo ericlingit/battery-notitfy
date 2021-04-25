@@ -25,7 +25,7 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 - [x] Determine when to notify start/stop charging.
 - [x] Display a system notification.
 - [x] Run continuously
-- [x] Autostart (`systemd`)
+- [x] Autostart on login
 
 ## Technical Architecture (WIP)
 - Target operating system: Ubuntu 18.04 x64
@@ -66,6 +66,8 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
 ## Installation
 1. `chmod +x battery-notify.sh`
 1. `sudo cp battery_notify.py /usr/local/src`
-1. `sudo cp battery-notify.sh /usr/local/bin/`
-1. `sudo cp battery-notify.service /etc/systemd/system/`
-1. `sudo systemctl enable battery-notify.service`
+1. `sudo cp battery-notify.sh /usr/local/bin/battery-notify`
+1. Add `battery-notify` to your startup application settings (see screenshot)
+1. Logout and log back in
+
+![img](./startup-app-setting.png)
