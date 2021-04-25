@@ -2,7 +2,7 @@
 
 ## Overview
 
-This script displays a notification to remind you to plug or unplug the charger when the battery level goes below 50% or above 60%.
+This script displays a notification to remind you to plug or unplug the charger when the battery level goes below 50% or above 80%.
 
 ## Context
 
