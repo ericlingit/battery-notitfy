@@ -10,7 +10,7 @@ This script displays a notification to remind you to plug or unplug the charger 
 
 To maintain maximum battery life, it's best to keep it charged between 40%-60%. Never keep it completely full or empty. This stresses the battery and makes it degrade faster. See this ArsTechnica article on [the best way to use a lithium-ion battery, redux](https://arstechnica.com/gadgets/2014/04/ask-ars-the-best-way-to-use-a-lithium-ion-battery-redux/).
 
-Most laptops with Windows preinstalled have some kind of firmware utility that can either stop charging when the battery reaches 80%, or limit the charging range to extend the battery's life. For most laptops, this utility stops working if you shutdown the computer or dual boot into Linux (i.e., stop running Windows).
+Most laptops with Windows preinstalled have some kind of firmware utility that can either stop charging when the battery reaches 80%, or limit the charging range to extend the battery's life. For most laptops, this utility stops working if you dual boot into Linux (i.e., stop running Windows).
 
 ## Goals and non-goals
 
@@ -27,7 +27,7 @@ Most laptops with Windows preinstalled have some kind of firmware utility that c
 - [x] Determine when to notify start/stop charging.
 - [x] Display a system notification.
 - [x] Run continuously
-- [ ] Autostart on login.
+- [ ] Autostart (`systemd`)
 
 ## Technical Architecture (WIP)
 - Target operating system: Ubuntu 18.04 x64
@@ -64,26 +64,10 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
     - Another way is to `pip install python3-notify2` and use that. [Docs](https://pypi.org/project/notify2/).
 1. User connects the laptop to a charger to charge the laptop while using it. The battery reaches 60%. On this event, the app calls system notification stack to display a reminder to stop charging the laptop. e.g., "Battery at 60%, unplug the charger."
 
-#### Psudo code
 
-```
-# On start: read battery & AC adapter status
-bat_pct = open('/sys/class/power_supply/CMB0/capacity', 'r').readline()
-ac_stat = open('/sys/class/power_supply/ADP1/online', 'r').readline()
-
-# Run continuously (not sure if proper to use a while loop)
-while True:
-    # Check whether charging
-    if ac_stat:
-        # Check battery percentage
-        if bat_pct >= 60%:
-            notify("Battery at 60%. Stop charging.")
-    else:
-        # Check battery percentage
-        if bat_pct <= 40%:
-            notify("Battery at 40%. Start charging.")
-    sleep(300)
-```
-
-## Testing, monitoring, and alerting app status
-TBA
+## Installation
+1. `chmod +x battery-notify.sh`
+1. `sudo cp battery_notify.py /usr/local/src`
+1. `sudo cp battery-notify.sh /usr/local/bin/`
+1. `sudo cp battery-notify.service /etc/systemd/system/`
+1. `sudo systemctl enable battery-notify.service`

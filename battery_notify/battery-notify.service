@@ -1,0 +1,8 @@
+[Unit]
+Description=Battery charge notifier
+
+[Service]
+ExecStart=/usr/local/bin/battery-notify.sh
+
+[Install]
+WantedBy=default.target
