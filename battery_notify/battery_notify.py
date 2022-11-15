@@ -29,24 +29,29 @@ def read_stats() -> dict:
         exit(f"Error reading power stats: {e}")
 
 
-# Run continuously
-while True:
-    # Get power stats
-    stats = read_stats()
+def main():
+    # Run continuously
+    while True:
+        # Read stats
+        stats = read_stats()
 
-    # Determine what to notify.
-    if stats["charging"]:
-        log.info("Battery is charging.\n")
-        # Check battery percentage
-        if stats["bat_pct"] > MAX:
-            # Show notification pop up
-            run(["notify-send", f"Battery above {MAX}%, stop charging."])
-    else:
-        log.info("Battery is discharging.\n")
-        # Check battery percentage
-        if stats["bat_pct"] <= MIN:
-            # Show notification pop up
-            run(["notify-send", f"Battery below {MIN}%, start charging."])
+        # Determine what to notify.
+        if stats["charging"]:
+            log.info("Battery is charging.\n")
+            # Check battery percentage
+            if stats["bat_pct"] > MAX:
+                # Show notification pop up
+                run(["notify-send", f"Battery above {MAX}%, stop charging."])
+        else:
+            log.info("Battery is discharging.\n")
+            # Check battery percentage
+            if stats["bat_pct"] <= MIN:
+                # Show notification pop up
+                run(["notify-send", f"Battery below {MIN}%, start charging."])
 
-    # Sleep 5 minutes
-    sleep(300)
+        # Sleep 5 minutes
+        sleep(300)
+
+
+if __name__ == "__main__":
+    main()
