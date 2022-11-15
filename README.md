@@ -40,6 +40,8 @@ Reference: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-powe
 
 battery-notify reads the values from the two files and sends a notification using Ubuntu's `notify-send` utility. Message content depends on the charge state and the battery's level. battery-notify then goes to sleep for 5 minutes, and then repeat the above actions.
 
+The `requirements.txt` file lists only `black` and `mypy`. They're used for linting during development. No external dependency is required for running battery-notify.
+
 ## battery-notify installation and usage guide
 
 1. `git clone https://github.com/ericlingit/battery-notitfy.git`
